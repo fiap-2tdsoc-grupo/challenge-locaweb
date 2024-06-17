@@ -18,6 +18,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Divider
@@ -77,21 +78,15 @@ fun EmailListScreen(navController: NavController) {
                         icon = Icons.Default.ArrowBack,
                         description = "Back"
                     ) {
-                        // Ação de voltar
+                        navController.popBackStack()
                     }
                      },
                 actions = {
                     TopBarAction(
-                        icon = Icons.Default.Search,
-                        description = "Search"
+                        icon = Icons.Default.Place,
+                        description = "Localization"
                     ) {
-                        // Ação de pesquisa
-                    }
-                    TopBarAction(
-                        icon = Icons.Default.Settings,
-                        description = "Settings"
-                    ) {
-                        // Ação de configurações
+                        navController.navigate(Screen.MapScreen.route)
                     }
                 }
             )
@@ -212,7 +207,7 @@ var listaEmailsFavoritos by remember {
 
         IconButton(
             onClick = {
-                    navController.navigate(Screen.EmailsLista.route)
+                    navController.navigate(Screen.LandingPage.route)
                 ExbirFavoritos(0);
             }
         ) {
@@ -248,12 +243,12 @@ var listaEmailsFavoritos by remember {
 
         IconButton(
             onClick = {
-
+                navController.navigate(Screen.MapScreen.route)
             }
         ) {
             Icon(
-                imageVector = Icons.Default.AccountBox,
-                contentDescription = "Profile"
+                imageVector = Icons.Default.Place,
+                contentDescription = "Localization"
             )
         }
     }

@@ -23,6 +23,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -138,7 +139,7 @@ fun LandingPage(navController: NavController) {
                     emailsExibir.value = getEmailsImportantes();
                 }
                 items(emailsExibir.value) { email ->
-                    EmailCard(email)
+                    EmailCard(email, navController)
                 }
             }
         }
@@ -146,11 +147,11 @@ fun LandingPage(navController: NavController) {
 }
 
 @Composable
-fun EmailCard(email: EmailClass) {
+fun EmailCard(email: EmailClass, navController: NavController) {
 
     Card(
         modifier = Modifier
-            .width(150.dp)
+            .width(180.dp)
             .height(250.dp)
             .padding(5.dp)
     ) {
@@ -186,7 +187,12 @@ fun EmailCard(email: EmailClass) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(email.nome, fontWeight = FontWeight.Bold)
                 Text(email.role, color = Color.Black)
-                Box (Modifier.background(Color.Black.copy(alpha = 0.2f))) {
+                Button (
+                    onClick = { navController.navigate(Screen.MapScreen.route) },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Black.copy(alpha = 0.2f)
+                    )
+                ) {
                     Text(email.location, color = Color.LightGray)
                 }
 
